@@ -1,0 +1,51 @@
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	background-color: rgba(36, 39, 58, 0.90);
+}
+
+button {
+	border-radius: 9px;
+	border-color: #a6da95;
+	text-decoration-color: #cad3f5;
+	color: #cad3f5;
+	background-color: #1e2030;
+	border-style: solid;
+	border-width: 2px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+}
+
+button:focus, button:active, button:hover {
+	/* 20% Overlay 2, 80% mantle */
+	background-color: rgb(53, 57, 75);
+	outline-style: none;
+}
+
+#lock {
+    background-image: url("/home/dod/.config/wlogout/icons/lock.svg");
+}
+
+#logout {
+    background-image: url("/home/dod/.config/wlogout/icons/logout.svg");
+}
+
+#suspend {
+    background-image: url("/home/dod/.config/wlogout/icons/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("/home/dod/.config/wlogout/icons/hibernate.svg");
+}
+
+#shutdown {
+    background-image: url("/home/dod/.config/wlogout/icons/shutdown.svg");
+}
+
+#reboot {
+    background-image: url("/home/dod/.config/wlogout/icons/reboot.svg");
+}
