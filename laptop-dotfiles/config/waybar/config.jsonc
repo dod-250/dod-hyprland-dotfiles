@@ -1,0 +1,185 @@
+{
+    //Make the bar as the top layer.
+"layer": "top",
+
+// Make waybar appear at the top of the screen. You can give "bottom/left/right" also as needed.
+"position": "top",
+
+//Define what items should appear in the left part of the waybar.
+"modules-left": ["cpu_usage", "custom/cpuinfo", "memory", "hyprland/window"],
+
+//Define the items to appear in the center part of the bar.
+"modules-center": ["hyprland/workspaces"],
+
+//Define items to appear in the right side of the bar.
+"modules-right": ["tray", "cpu", "pulseaudio", "network", "power-profiles-daemon", "battery", "custom/swaync", "clock"],
+
+   "cpu_usage": {
+        "interval": 10,
+        "format": " 󰍛 {usage}% ",
+        "rotate": 0
+    },
+
+ "memory": {
+        "states": {
+            "c": 90, // critical
+            "h": 60, // high
+            "m": 30, // medium
+        },
+        "interval": 30,
+        "format": " 󰾆 {used}GB ",
+        "rotate": 0,
+        "format-m": " 󰾅 {used}GB ",
+        "format-h": " 󰓅 {used}GB ",
+        "format-c": "  {used}GB ",
+        "format-alt": " 󰾆 {percentage}% ",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": " 󰾆 {percentage}%\n {used:0.1f}GB/{total:0.1f}GB "
+    },
+
+    "custom/cpuinfo": {
+        "exec": " ~/.config/waybar/modules/cpuinfo.sh",
+        "return-type": "json",
+        "format": " {} ",
+        "rotate": 0,
+        "interval": 5, // once every 5 seconds
+        "tooltip": true,
+        "max-length": 1000
+    },
+
+"hyprland/workspaces": {
+		"format": "[ {name} ]",
+		"format-icons": {
+            "active": "󰻃",
+            "default": ""
+			},
+        "persistent-workspaces": {
+      		"eDP-1": [1, 2, 3, 4, 5]
+    		}
+        },
+
+"clock": {
+        	"format": " {:%H:%M} ",
+        	"rotate": 0,
+        	"format-alt": "{  %d·%m·%y}",
+        	"tooltip-format": "<span>{calendar}</span>",
+        	"calendar": {
+            		"mode": "month",
+            		"format": {
+                	    "months": "<span color='#ff6699'><b>{}</b></span>",
+                        "days": "<span color='#cdd6f4'><b>{}</b></span>",
+                	    "weekdays": "<span color='#7CD37C'><b>{}</b></span>",
+                	    "today": "<span color='#ffcc66'><b>{}</b></span>"
+            	}
+            }
+    },
+
+"cpu": {
+     		"format": " {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7} ",
+     		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+	},
+
+// Define Network
+
+    	"network": {
+        	"tooltip": true,
+        	"rotate": 0,
+                "family":"ipv4",
+        	"format-ethernet": " 󰈀 {ifname} ",
+        	"tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>",
+        	"format-linked": "  {ifname} (No IP)",
+        	"format-disconnected": " 󰖪 ",
+        	"tooltip-format-disconnected": "Disconnected",
+        	"format-alt": "<span foreground='#24273A'> {bandwidthDownBytes}</span> <span foreground='#24273A'> {bandwidthUpBytes}</span>",
+        	"interval": 2
+    	},
+
+// Define Audio
+
+        "pulseaudio": {
+        	"format": " {volume}% {icon} ",
+        	"format-bluetooth": " {volume}% {icon} ",
+        	"format-bluetooth-muted": " 婢  muted ",
+        	"format-muted": " 󰖁 muted ",
+        	"format-icons": {
+            		"headphone": "󰋋",
+            		"hands-free": "",
+            		"headset": "󰋋",
+            		"phone": "󰄜",
+            		"portable": "",
+            		"car": "󰸛",
+            		"default": ["󰕿", "󰖀", "󰕾"]
+        	},
+        	"on-click-right": "pavucontrol",
+      		"on-click": ".config/hypr/scripts/changevolume mute",
+    	},
+	
+	"hyprland/window": {
+	"format": "  {} ",
+	"rewrite": {
+		"(.*) - Mozilla Firefox": "🌎 $1",
+	}
+},
+
+"tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 5
+    },
+    
+    "power-profiles-daemon": {
+  "format": " {icon} ",
+  "tooltip-format": "Power profile: {profile}nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+        }
+    },
+
+	"battery": {
+    		"interval": 60,
+    		"states": {
+        		"warning": 30,
+        		"critical": 15
+    		},
+    		"format": " {capacity}% {icon} ",
+    		"format-icons": [" ", " ", " ", " ", " "],
+    		"max-length": 25
+    },
+
+    "custom/spotify": {
+        "exec": "python3 ~/.config/waybar/modules/mediaplayer.py --player spotify",
+        "format": "  {}",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+
+	"custom/swaync": {
+        "tooltip": true,
+        "format": " {icon} ",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+
+    }
+
+}
