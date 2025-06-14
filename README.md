@@ -16,3 +16,9 @@ I use the following :
  - Clock : Clocktemp https://github.com/arthur-dnts/ClockTemp
  - Matrix : Rs-matrix https://github.com/TitaniumBrain/rs-matrix
  - Music : Plexamp
+
+
+Screenshots :
+
+![2025-06-14-225110_hyprshot](https://github.com/user-attachments/assets/0e7069f3-e5f4-45c1-ad72-1b1754fdaec4)
+![2025-06-14-225429_hyprshot](https://github.com/user-attachments/assets/6514d01a-f12a-4da1-9d84-fa3d7ecd17ed)
