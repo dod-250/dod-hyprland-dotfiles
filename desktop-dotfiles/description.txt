@@ -1,0 +1,1 @@
+This section is for desktop with multimonitor. You can use it with a single monitor but you have to edit hyprland.conf and monitors.conf.
