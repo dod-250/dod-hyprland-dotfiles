@@ -1,0 +1,167 @@
+{
+	"layer": "top",
+	"output": ["DP-3", "DP-2"],
+	"modules-left": ["cpu_usage", "custom/cpuinfo","temperature", "memory", "hyprland/window"],
+	"modules-center": ["hyprland/workspaces"],
+	"modules-right": ["tray", "cpu", "hyprland/language", "pulseaudio", "network", "battery", "clock"],
+
+
+	"position": "top",
+
+
+	"cpu_usage": {
+        "interval": 10,
+        "format": " 󰍛 {usage}% ",
+        "rotate": 0
+    },
+
+	"memory": {
+        "states": {
+            "c": 90, // critical
+            "h": 60, // high
+            "m": 30, // medium
+        },
+        "interval": 30,
+        "format": " 󰾆 {used}GB ",
+        "rotate": 0,
+        "format-m": " 󰾅 {used}GB ",
+        "format-h": " 󰓅 {used}GB ",
+        "format-c": "  {used}GB ",
+        "format-alt": " 󰾆 {percentage}% ",
+        "max-length": 10,
+        "tooltip": true,
+        "tooltip-format": " 󰾆 {percentage}%\n {used:0.1f}GB/{total:0.1f}GB "
+    },
+
+    "temperature": {
+	    "thermal-zone": 1,
+	    "hwmon-path": ["/sys/class/hwmon/hwmon4/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+		"critical-threshold": 80,
+		"format-critical": "  {temperatureC}°C ",
+		"format": "  {temperatureC}°C "
+	},
+
+	"hyprland/workspaces": {
+		"format": "[ {name} ]",
+		"format-icons": {
+            "active": "󰻃",
+            "default": ""
+			},
+		"persistent-workspaces": {
+		"DP-3": [1,2,3], // 3 workspaces by default on monitor
+		"DP-2": [4,5,6], // 3 workspaces by default on monitor
+		"DP-1": [7,8,9], // 3 workspaces by default on monitor
+		"HDMI-A-3": [ 10 ] // but only workspace 1 on HDMI-A-1
+			}
+	},
+
+	"clock": {
+        	"format": " {:%H:%M} ",
+        	"rotate": 0,
+        	"format-alt": "{  %d·%m·%y}",
+        	"tooltip-format": "<span>{calendar}</span>",
+        	"calendar": {
+            		"mode": "month",
+            		"format": {
+                	    "months": "<span color='#ff6699'><b>{}</b></span>",
+                        "days": "<span color='#cdd6f4'><b>{}</b></span>",
+                	    "weekdays": "<span color='#7CD37C'><b>{}</b></span>",
+                	    "today": "<span color='#ffcc66'><b>{}</b></span>"
+            	}
+            }
+    },
+
+	"cpu": {
+     		"format": " {icon0} {icon1} {icon2} {icon3} ",
+     		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+	},
+
+// Define Network
+
+	"network": {
+        	"tooltip": true,
+        	"rotate": 0,
+                "family":"ipv4",
+        	"format-ethernet": " 󰈀 {ifname} ",
+        	"tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>",
+        	"format-linked": "  {ifname} (No IP)",
+        	"format-disconnected": " 󰖪 ",
+        	"tooltip-format-disconnected": "Disconnected",
+        	"format-alt": "<span foreground='#24273A'> {bandwidthDownBytes}</span> <span foreground='#24273A'> {bandwidthUpBytes}</span>",
+        	"interval": 2
+	},
+
+// Define Audio
+
+	"pulseaudio": {
+        	"format": " {volume}% {icon} ",
+        	"format-bluetooth": " {volume}% {icon} ",
+        	"format-bluetooth-muted": " 婢  muted ",
+        	"format-muted": " 󰖁 muted ",
+        	"format-icons": {
+            		"headphone": "󰋋",
+            		"hands-free": "",
+            		"headset": "󰋋",
+            		"phone": "󰄜",
+            		"portable": "",
+            		"car": "󰸛",
+            		"default": ["󰕿", "󰖀", "󰕾"]
+        	},
+        	"on-click-right": "pavucontrol",
+      		"on-click": ".config/hypr/scripts/changevolume mute",
+	},
+	
+    "hyprland/window": {
+        "format": "  {}",
+        "rotate": 0,
+        "separate-outputs": true,
+        "rewrite": {
+            "dod@archlinux:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) - Code - OSS": "$1 󰨞",
+            "(.*)Code - OSS": "Code 󰨞",
+            "(.*) — Dolphin": "$1 󰉋",
+            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓",
+            "(.*) - Discord": "$1  ",
+            "(.*)Netflix": "Netflix 󰝆 ",
+            "(.*) — Google chrome": "$1  ",
+            "(.*)Google chrome": "Google chrome  ",
+            "(.*) — Github": "$1  ",
+            "(.*)Github": "Github ",
+            "(.*)Spotify Free": "Spotify 󰓇",
+            "(.*)Spotify Premiun": "Spotify 󰓇",
+        },
+        "max-length": 50
+    },
+
+	"battery": {
+    		"interval": 60,
+    		"states": {
+        		"warning": 30,
+        		"critical": 15
+    		},
+    		"format": " {capacity}% {icon} ",
+    		"format-icons": [" ", " ", " ", " ", " "],
+    		"max-length": 25
+	},
+
+    "tray": {
+        "icon-size": 16,
+        "rotate": 0,
+        "spacing": 5
+    },
+
+
+	 "hyprland/language": {
+		"format": " 󰌌 {}",
+		"format-us": " US ",
+		"format-en-intl": " US INTL ",
+		"keyboard-name": "at-translated-set-2-keyboard",
+		"on-click": "hyprctl switchxkblayout $SET_KB next"
+
+	}
+}
