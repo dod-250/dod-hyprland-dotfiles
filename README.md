@@ -1,6 +1,6 @@
 This theme was inspired by this artwork of my favorite band, and my love for catppuccin macchiato.
 
-I made these dotfiles in two sections : desktop and laptop. Use the one that fit your usage.
+I made these dotfiles in two sections : desktop and laptop. Use the one that fits your usage.
 
 I use the following :
 
