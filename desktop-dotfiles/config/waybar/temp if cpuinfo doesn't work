@@ -1,0 +1,7 @@
+"temperature": {
+	    "thermal-zone": 1,
+	    "hwmon-path": ["/sys/class/hwmon/hwmon4/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+		"critical-threshold": 80,
+		"format-critical": "  {temperatureC}°C ",
+		"format": "  {temperatureC}°C "
+	},
